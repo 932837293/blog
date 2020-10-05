@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <title>My Moment</title>
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+            background-color: #f9f9f9;
+        }
+        div{
+            text-align: center;
+        }
+        #nav{
+            width: 100%;
+            height: 50px;
+            margin: auto;
+            background-color: white;
+            position: fixed;
+            opacity: 0.6;
+        }
+        #header{
+            width: 100%;
+            height:790px;
+            margin: auto;
+            overflow: hidden;
+            background-image: url("{% static 'image/header.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            box-shadow: 0px 30px 30px -20px #929292;
+        }
+        .main-text{
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            margin-top: -55px;
+            color: white;
+            font-family: "Raleway",sans-serif;
+            font-size: 70px;
+            font-weight: 800;
+            line-height: 70px;
+            letter-spacing: -0.1rem;
+            text-align: center;
+            text-transform: uppercase;
+            text-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+            z-index: 20;
+        }
+        .sub-text{
+            overflow: hidden;
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            margin-top: 30px;
+            color: white;
+            font-family: "Raleway",sans-serif;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 20px;
+            letter-spacing: 0.1rem;
+            text-align: center;
+            text-transform: uppercase;
+            text-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+            z-index: 20;
+        }
+
+        #joy{
+            height: 820px;
+            margin: auto;
+        }
+        #status{
+            width: 100%;
+            height: 600px;
+            margin: auto;
+            overflow: hidden;
+            background-image: url("{% static 'image/timg.gif' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            opacity: 0.9;
+            box-shadow: 0px 30px 30px -20px #929292;
+
+        }
+        #about{
+            height: 800px;
+            margin: auto;
+        }
+        .about-title{
+            position: relative;
+            font-family: "Raleway",sans-serif;
+            font-size: 45px;
+            color: black;
+            font-weight: 800;
+            margin: 120px 0 0 0;
+            letter-spacing: -0.1rem;
+            text-transform: uppercase;
+        }
+        .about-title .border{
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            width: 100px;
+            height: 2px;
+            background-color: #eeeeee;
+            margin-left: -50px;
+        }
+        .about-title span{
+            font-weight: 300;
+        }
+        .about-page{
+            line-height: 2;
+            font-family: "Raleway",sans-serif;
+            font-size: 25px;
+            color: #929292;
+            font-weight: 300;
+            margin-top: 20px;
+        }
+        #footer{
+            height: 100px;
+            margin: auto;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <!--缓存页面-->
+    <div id="preloader">
+        <div class="runner"></div>
+    </div>
+    <!---->
+    <div id="nav">
+        <h2>daohang</h2>
+    </div>
+    <!---->
+    <div id="header">
+        <span class="pattern"></span>
+
+        <div class="main-text">
+            欢迎光临
+            {{ username }}
+            <br>
+            EVERYONE IN A MOMENT
+
+        </div>
+        <div class="sub-text">
+            也许生存在世间的人们都只是在等待一种偶遇，一种适时的相遇，时间对了，你们便会遇上。
+        </div>
+    </div>
+
+    <!---->
+    <div id="joy">
+
+                {% if IsLogin %}
+                    <a  href = "{%  url 'logout' %}" >注销</a>
+                    <input id = "publisher" type="button" style="dispaly:block" value="发表文章" onclick = "window.location.href={% url 'publish' %}"/>
+                {% else %}
+                    <a  href = "{% url 'login' %}" >登录</a>
+                {% endif %}
+
+    </div>
+    <!--状态-->
+    <div id="status">
+        <h2 class="status-title">
+            HISTORY MOMENT
+            <span class="pattern"></span>
+        </h2>
+        <h3 class="about-page">
+            <p>英文字段</p>
+        </h3>
+
+        <ul class="historydata" >
+					<li>
+						<strong data-number="630">80,975</strong>
+						<span style="color:white">浏览次数：</span>
+					</li>
+					<li class="break rotate"></li>
+					<li>
+						<strong data-number="85">62</strong>
+						<span  style="color:white">文章总数：</span>
+					</li>
+					<li class="break rotate"></li>
+					<li>
+						<strong data-number="198">13</strong>
+						<span  style="color:white">评论总数：</span>
+					</li>
+					<li class="break rotate"></li>
+					<li>
+						<strong data-number="1055"> 4</strong>
+						<span  style="color:white">当前访客：</span>
+					</li>
+				</ul>
+
+    </div>
+
+    <!--关于-->
+    <div id="about">
+        <h2 class="about-title">
+            ABOUT US
+            <span class="border"></span>
+        </h2>
+        <h3 class="about-page">
+            <p>中文字段</p>
+            <p>英文字段</p>
+        </h3>
+    </div>
+
+    <!--五人头像-->
+    <div id="footer">
+
+    </div>
+
+</body>
+    {% if pwderror %}
+        <script>
+                alert('{{ pwderror }}');
+        </script>
+    {% endif %}
+    {% if IsLogin %}
+    <script>
+         var quiteTime = 15*60;
+         var currentTime = 0;
+        $(function () {
+
+            $("*").click(function () {
+                currentTime = 0;
+            });
+
+            $('*').mouseover(function () {
+                currentTime = 0;
+            });
+
+            setInterval(function () {
+                currentTime++;
+                if(currentTime>=quiteTime)
+                {
+                     top.location.href = '/test/';
+                }
+            }, 1000);
+        })
+    </script>
+{% endif %}
+</html>

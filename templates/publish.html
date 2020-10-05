@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发表文章</title>
+    <style>
+        body{
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+            background-image: url("{% static 'image/lemon.png' %}");
+            background-repeat: repeat;
+            font-family: "Raleway",sans-serif;
+            text-align: center;
+        }
+        #write{
+            width: 70%;
+            margin-left: 15%;
+            margin-top: 50px;
+            height: 600px;
+            background-color: white;
+            border-radius: 15px;
+        }
+        .article{
+            position: relative;
+            top:50px;
+            font-size: 45px;
+            color: #608286;
+            font-weight: 800;
+            margin: 60px 0 0 0;
+            letter-spacing: 0.1rem;
+            text-transform: uppercase;
+        }
+        .article_title{
+            width:320px;
+            height: 40px;
+            border:1px solid #adc3c0;
+            border-radius: 15px;
+            padding:0px;
+            text-indent: 10px;
+            outline: none;
+            float:left;
+            position: absolute;
+            top:68%;
+            right: 50%;
+            margin-right: -180px;
+            transition: border 0s;
+        }
+        .article_title:hover{
+            border: 2px solid #608286;
+        }
+
+
+        .article_text{
+            width: 320px;
+            position: absolute;
+            top: 25%;
+            right: 50%;
+            margin-right: -180px;
+        }
+
+        .article_sub{
+            text-align: center;
+            width:90px;
+            height: 45px;
+            background-color: #608286;
+            border:0px;
+            border-radius: 15px;
+            font-size: medium;
+            color: white;
+            position: absolute;
+            top:68%;
+            right: 50%;
+            margin-right: -300px;
+            transition: opacity 0s;
+        }
+        .article_sub:hover{
+            opacity: 0.6;
+        }
+
+    </style>
+</head>
+<body>
+<div id="write">
+    <h2 class="article">✎ 发表文章</h2>
+    <form method="post" action="{% url 'publishing' %}">
+    <input class="article_title" type="text" name="title" placeholder="article title"><br>
+    <textarea class="article_text" name="content" id="content" placeholder="article content" cols="30" rows="20"></textarea>
+    <input class="article_sub" style="top: 59%;z-index: 1;" value="选择文件"><br>
+    <input class="article_sub" style="top: 59%;opacity: 0;z-index: 5;height: 50px;width: 100px" type="file" value="选择文件" name="imgurl" enctype="multipart/form-data">
+    <input class="article_sub" type="submit" value="发布"><br>
+    </form>
+</div>
+</body>
+</html>

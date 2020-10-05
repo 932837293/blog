@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <title>My Moment</title>
+    <style>
+        body{
+            margin: 0px;t-family: "Raleway",sans-serif;
+            text-align: center;
+            padding: 0px;
+            background-color: #f9f9f9;
+        }
+        #nav{
+            width: 100%;
+            height: 0px;
+            margin: auto;
+            background-color: white;
+            position: fixed;
+            opacity: 0.6;
+            z-index: 9999;
+            transition: height 1s;
+        }
+        #nav:hover{
+            height: 60px;
+        }
+
+        #nav svg{
+            width: 30px;
+            height: 20px;
+        }
+        .menu{
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        .menu:hover{
+            opacity: 1;
+        }
+        #header{
+            width: 100%;
+            height:790px;
+            margin: auto;
+            overflow: hidden;
+            background-image: url("{% static 'image/header.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            box-shadow: 0px 30px 30px -20px #929292;
+        }
+        #header .main-text{
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            margin-top: -55px;
+            color: white;
+            opacity: 1;
+            font-size: 70px;
+            font-weight: 800;
+            line-height: 70px;
+            letter-spacing: -0.1rem;
+            text-align: center;
+            text-transform: uppercase;
+            text-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+            transition: color 0s linear 0s;
+            z-index: 20;
+        }
+        #header .main-text:hover{
+            opacity: 0.6;
+        }
+        #header .sub-text{
+            overflow: hidden;
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            margin-top: 30px;
+            color: white;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 20px;
+            letter-spacing: 0.1rem;
+            text-align: center;
+            text-transform: uppercase;
+            text-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+            transition: color 0s linear 0s;
+            z-index: 20;
+        }
+        #header .sub-text:hover{
+            opacity: 0.6;
+        }
+        #header .tributton{
+            position: relative;
+            top:670px;
+            color: white;
+            transition: color 0s linear 0s;
+        }
+        #header .tributton:hover{
+            color: #394039;
+            opacity: 0.6;
+        }
+        button{
+            border-radius: 50%;
+            border: none;
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background-size: cover;
+            background-image: url("{% static 'image/loginbutton.jpg' %}");
+            position: fixed;
+            float: right;
+            right: 50px;
+            bottom: 50px;
+            z-index: 9999;
+            color: #000000;
+        }
+        #joy{
+            height: 820px;
+            margin: auto;
+        }
+        #joy .joy-img{
+            width: 200px;
+            height: 200px;
+            display: inline-block;
+            margin: 25px;
+            position: relative;
+            top: 20px;
+        }
+        #joy svg {
+            transform: rotate(45deg);
+            width:130px;
+            height:130px;
+            background: #adc3c0;
+            opacity: 0.6;
+            transition: background-color 0s linear 0s;
+            margin: 20px;
+            position: relative;
+            top: 20px;
+        }
+        #joy path{
+            transform: rotate(-45deg);
+            position: relative;
+            top: 50px;
+            left: 50px;
+        }
+        #joy svg:hover
+        {
+            background-color: salmon;
+        }
+
+        #status{
+            height: 800px;
+        }
+        #placeholder{
+            height: 50px;
+        }
+        #statuscontent{
+            width: 100%;
+            height: 600px;
+            margin: auto;
+            overflow: hidden;
+            background-image: url("{% static 'image/status.gif' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            opacity: 0.9;
+            box-shadow: 0px 30px 30px -20px #929292;
+        }
+        .status-title{
+            position: relative;
+            font-size: 45px;
+            color: white;
+            font-weight: 800;
+            margin: 120px 0 0 0;
+            letter-spacing: -0.1rem;
+            text-transform: uppercase;
+        }
+        .status-title .border{
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            width: 100px;
+            height: 2px;
+            background-color: white;
+            margin-left: -50px;
+        }
+        .status-title span{
+            font-weight: 300;
+        }
+        .status-page{
+            line-height: 2;
+            font-size: 25px;
+            color: white;
+            font-weight: 300;
+            margin-top: 20px;
+        }
+        .historydata{
+            float: left;
+            width: 100%;
+            margin: 80px 0 80px 0;
+            text-decoration: none;
+        }
+        .historydata strong{
+            font-size: 70px;
+            font-weight: bold;
+            color: salmon;
+            display: block;
+            line-height: 100%;
+        }
+        li{
+            display: inline-block;
+            margin: 0 25px;
+        }
+        ul,ol{
+            list-style-type: none;
+            padding: 0;
+        }
+        a{
+            padding: 15px;
+            font-size: 15px;
+            text-decoration: none;
+            color: #394039;
+            transition: font-size 1s;
+        }
+        a:hover{
+            font-size: 19px;
+        }
+        #about{
+            height: 700px;
+            margin: auto;
+            padding-top: 20px;
+        }
+        .title{
+            position: relative;
+            font-size: 45px;
+            color: #394039;
+            font-weight: 800;
+            margin: 60px 0 0 0;
+            letter-spacing: -0.1rem;
+            text-transform: uppercase;
+        }
+        .title .border{
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            width: 100px;
+            height: 2px;
+            background-color: #eeeeee;
+            margin-left: -50px;
+        }
+        .title span{
+            font-weight: 300;
+        }
+        .page{
+            line-height: 2;
+            font-family: "Raleway",sans-serif;
+            font-size: 25px;
+            color: #adc3c0;
+            font-weight: 300;
+            margin-top: 20px;
+        }
+        #about .page img{
+            width: 30px;
+            height: 30px;
+        }
+        #about img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        #footer{
+            height: 50px;
+            margin: auto;
+            background-color: #394039;
+            opacity: 0.8;
+        }
+        </style>
+</head>
+<body>
+<!--缓存页面-->
+<div id="preloader">
+    <div class="runner"></div>
+</div>
+<!--导航栏-->
+<div id="nav">
+
+    <ul class="menu">
+        <li>
+            <a class="menuheader" href="#header">
+                首页·INDEX
+            </a>
+        </li>
+        <svg color="#394039" width="6em" height="6em" viewBox="0 0 16 16" class="tributton" fill="currentColor">
+            <path fill-rule="evenodd" d="M8 0a.5.5 0 0 1 .416.223l3 4.5A.5.5 0 0 1 11 5.5h-.098l2.022 3.235a.5.5 0 0 1-.424.765h-.191l1.638 3.276a.5.5 0 0 1-.447.724h-11a.5.5 0 0 1-.447-.724L3.69 9.5H3.5a.5.5 0 0 1-.424-.765L5.098 5.5H5a.5.5 0 0 1-.416-.777l3-4.5A.5.5 0 0 1 8 0z"/>
+            <path d="M7 13.5h2V16H7v-2.5z"/>
+        </svg>
+        <li>
+            <a class="menujoy" href="#joy">
+                乐趣·JOY
+            </a>
+        </li>
+
+        <svg color="#394039" width="6em" height="6em" viewBox="0 0 16 16" class="tributton" fill="currentColor">
+            <path fill-rule="evenodd" d="M8 0a.5.5 0 0 1 .416.223l3 4.5A.5.5 0 0 1 11 5.5h-.098l2.022 3.235a.5.5 0 0 1-.424.765h-.191l1.638 3.276a.5.5 0 0 1-.447.724h-11a.5.5 0 0 1-.447-.724L3.69 9.5H3.5a.5.5 0 0 1-.424-.765L5.098 5.5H5a.5.5 0 0 1-.416-.777l3-4.5A.5.5 0 0 1 8 0z"/>
+            <path d="M7 13.5h2V16H7v-2.5z"/>
+        </svg>
+        <li>
+            <a class="menustatus" href="#status">
+                状态·STATUS
+            </a>
+        </li>
+        <svg color="#394039" width="6em" height="6em" viewBox="0 0 16 16" class="tributton" fill="currentColor">
+            <path fill-rule="evenodd" d="M8 0a.5.5 0 0 1 .416.223l3 4.5A.5.5 0 0 1 11 5.5h-.098l2.022 3.235a.5.5 0 0 1-.424.765h-.191l1.638 3.276a.5.5 0 0 1-.447.724h-11a.5.5 0 0 1-.447-.724L3.69 9.5H3.5a.5.5 0 0 1-.424-.765L5.098 5.5H5a.5.5 0 0 1-.416-.777l3-4.5A.5.5 0 0 1 8 0z"/>
+            <path d="M7 13.5h2V16H7v-2.5z"/>
+        </svg>
+        <li>
+            <a class="menuabout" href="#about">
+                关于·ABOUT US
+            </a>
+        </li>
+    </ul>
+    <span style="float:right;"><a href="{% url 'MyWorld' %}" style="color:white">欢迎光临.{{ username }}</a> </span>
+</div>
+<!--欢迎页-->
+<div id="header">
+    <span class="pattern"></span>
+    <div class="main-text">
+        EVERYONE IN A MOMENT
+    </div>
+    <div class="sub-text">
+        也许生存在世间的人们都只是在等待一种偶遇，一种适时的相遇，时间对了，你们便会遇上。
+    </div>
+    <svg width="30em" height="6em" viewBox="0 0 16 16" class="tributton" fill="currentColor">
+        <path d="M7.247 11.14 L2.451 5.658 C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0Z"/>
+    </svg>
+</div>
+
+
+<div id="placeholder1"></div>
+
+<!--乐趣/功能-->
+<div id="joy">
+    <div id="placeholder" height="50px"></div>
+    <div id="joy-content">
+        <h2 class="title">
+            ENJOY YOURSELVES
+            <span class="border"></span>
+        </h2>
+        <div class="joy-img">
+            <svg color="white" width="20em" height="20em" viewBox="-12 -25 50 50" fill="currentColor">
+                <path fill-rule="evenodd" d="M12.002 4h-10a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1zm-10-1a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-10zm4 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                <path fill-rule="evenodd" d="M4 2h10a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1v1a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2h1a1 1 0 0 1 1-1z"/>
+            </svg>
+        </div>
+        <div class="joy-img">
+            <svg color="white" width="20em" height="20em" viewBox="-15 -25 50 50" fill="currentColor">
+                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+            </svg>
+        </div>
+        <div class="joy-img">
+            <svg color="white" width="20em" height="20em" viewBox="-12 -25 50 50" fill="currentColor">
+                <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2z"/>
+                <path fill-rule="evenodd" d="M14 11V2h1v9h-1zM6 3v10H5V3h1z"/>
+                <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"/>
+            </svg>
+        </div>
+        </br>
+        <div class="joy-img">
+            <svg color="white" width="20em" height="20em" viewBox="-12 -25 50 50" fill="currentColor">
+                <path fill-rule="evenodd" d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 5.146l-2-2a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L7.5 6.707V10.5a.5.5 0 0 0 1 0V6.707l1.146 1.147a.5.5 0 0 0 .708-.708z"/>
+            </svg>
+        </div>
+        <div class="joy-img">
+            <svg color="white" width="20em" height="20em" viewBox="-15 -25 50 50" fill="currentColor">
+                <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+                <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+                <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm1.639-4.208l1.33.886 1.854-1.855a.25.25 0 0 1 .289-.047L11 4.75V7a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 7v-.5s1.54-1.274 1.639-1.208zM6.75 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5z"/>
+            </svg>
+        </div>
+        <div class="joy-img">
+            <svg color="white" width="20em" height="20em" viewBox="-15 -25 50 50" fill="currentColor">
+                <path fill-rule="evenodd" d="M6.825 4.138c.596 2.141-.36 3.593-2.389 4.117a4.432 4.432 0 0 1-2.018.054c-.048-.01.9 2.778 1.522 4.61l.41 1.205a.52.52 0 0 1-.346.659l-.593.19a.548.548 0 0 1-.69-.34L.184 6.99c-.696-2.137.662-4.309 2.564-4.8 2.029-.523 3.402 0 4.076 1.948zm-.868 2.221c.43-.112.561-.993.292-1.969-.269-.975-.836-1.675-1.266-1.563-.43.112-.561.994-.292 1.969.269.975.836 1.675 1.266 1.563zm3.218-2.221c-.596 2.141.36 3.593 2.389 4.117a4.434 4.434 0 0 0 2.018.054c.048-.01-.9 2.778-1.522 4.61l-.41 1.205a.52.52 0 0 0 .346.659l.593.19c.289.092.6-.06.69-.34l2.536-7.643c.696-2.137-.662-4.309-2.564-4.8-2.029-.523-3.402 0-4.076 1.948zm.868 2.221c-.43-.112-.561-.993-.292-1.969.269-.975.836-1.675 1.266-1.563.43.112.561.994.292 1.969-.269.975-.836 1.675-1.266 1.563z"/>
+            </svg>
+        </div>
+    </div>
+</div>
+
+<!--状态-->
+<div id="status">
+    <div id="placeholder"></div>
+    <div id="statuscontent">
+        <h2 class="status-title">
+            HISTORY MOMENT
+            <span class="border"></span>
+        </h2>
+        <h3 class="status-page">
+            <p>陪伴是最长情的告白</p>
+        </h3>
+
+        <ul class="historydata" >
+            <li>
+                <strong data-number="80975">80,975</strong>
+                <span style="color:white">浏览次数：</span>
+            </li>
+            <li class="break rotate"></li>
+            <li>
+                <strong data-number="20">{{ articlecount }}</strong>
+                <span style="color:white">文章总数：</span>
+            </li>
+            <li class="break rotate"></li>
+            <li>
+                <strong data-number="35">{{ dynamiccount }}</strong>
+                <span style="color:white">动态总数：</span>
+            </li>
+            <li class="break rotate"></li>
+            <li>
+                <strong data-number="6"> 6</strong>
+                <span style="color:white">当前访客：</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!--关于-->
+<div id="about">
+    <div id="placeholder"></div>
+    <div id="about-content">
+        <h2 class="title">
+            ABOUT US
+            <span class="border"></span>
+        </h2>
+        <h3 class="page">
+            <p>两天肝出来的个人博客呜呜呜，肝得在下要生要死QAQ</p>
+            <p>TIERD! HUNGRY! SLEEPY! I WANT TO SLEEP! </p>
+
+            <img src="{% static 'image/QQ.jpg' %}"> QQ: 705574645  &nbsp;&nbsp;
+            <img src="{% static 'image/Tel.jpg' %}"> TEL: 110110110
+        </h3>
+
+        <img src="{% static 'image/ak.jpg' %}" onclick="">
+        <img src="{% static 'image/cbr.jpg' %}" onclick="">
+        <img src="{% static 'image/lky.jpg' %}" onclick="">
+        <img src="{% static 'image/wjp.jpg' %}" onclick="">
+        <img src="{% static 'image/yqy.jpg' %}" onclick="">
+        <p>安康、车冰如、林柯颖、吴锦萍、杨琪瑶</p>
+    </div>
+</div>
+<!--五人头像-->
+{% if IsLogin %}
+                    <a  href = "{%  url 'logout' %}" ><button type="button" onclick="" value="注销"><br><br><br><br>&nbsp;   注销</button></a>
+                    <input id = "publisher" type="button" style="dispaly:block" value="发表文章" onclick = "window.location.href={% url 'publish' %}" />
+                    <input id = "archive" type="button" style="dispaly:block" value="查看文章" onclick = "window.location.href={% url 'archive' %}" />
+                {% else %}
+                    <a  href = "{% url 'log' %}" ><button type="button" onclick="" value="登录"><br><br><br><br>&nbsp;登录</button></a>
+                {% endif %}
+<div id="footer">
+
+</div>
+
+</body>
+{% if pwderror %}
+        <script>
+                alert('{{ pwderror }}');
+        </script>
+    {% endif %}
+    {% if IsLogin %}
+    <script>
+         var quiteTime = 15*60;
+         var currentTime = 0;
+        $(function () {
+
+            $("*").click(function () {
+                currentTime = 0;
+            });
+
+            $('*').mouseover(function () {
+                currentTime = 0;
+            });
+
+            setInterval(function () {
+                currentTime++;
+                if(currentTime>=quiteTime)
+                {
+                     top.location.href = '/blog/MyMoment';
+                }
+            }, 1000);
+        })
+    </script>
+{% endif %}
+</html>

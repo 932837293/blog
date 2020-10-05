@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <title>MyWorld</title>
+    <style>
+        body{
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+            background-image: url("{% static 'image/lemon.png' %}");
+            background-repeat: repeat;
+            font-family: "Raleway",sans-serif;
+            text-align: center;
+        }
+        div{
+            border-radius: 15px;
+        }
+
+        #nav{
+            border-radius: 0;
+            width: 100%;
+            height: 0px;
+            margin: auto;
+            background-color: white;
+            position: fixed;
+            opacity: 0.6;
+            z-index: 9999;
+            transition: height 1s;
+        }
+        #nav:hover{
+            height: 60px;
+        }
+
+        #nav svg{
+            width: 30px;
+            height: 20px;
+        }
+        .menu{
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        .menu:hover{
+            opacity: 1;
+        }
+
+        li{
+            display: inline-block;
+            margin: 0 25px;
+        }
+        ul,ol{
+            list-style-type: none;
+            padding: 0;
+        }
+        a{
+            padding:0 15px 0px 15px;
+            font-size: 15px;
+            text-decoration: none;
+            color: #394039;
+            transition: font-size 1s;
+        }
+        a:hover{
+            font-size: 19px;
+        }
+        h3{
+            line-height: 1;
+            font-size: 30px;
+            text-align: left;
+            color: #adc3c0;
+            font-weight: bold;
+            height: 30px;
+            float: right;
+            margin-top: 40px;
+            margin-bottom: 0;
+        }
+        h4{
+            font-size: 20px;
+            color: #adc3c0;
+            font-weight: 200;
+            text-align: left;
+            float: right;
+            height: 50px;
+            margin-top: 15px;
+            margin-bottom: 0;
+        }
+
+
+        #info{
+            width: 390px;
+            height: 220px;
+            margin-top: 100px;
+            background-color: white;
+            position: fixed;
+            left: 11%;
+        }
+        img{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            position: absolute;
+            top: 30px;
+            left:30px;
+        }
+        #info svg{
+            width: 25px;
+            height: 25px;
+        }
+        #info li{
+            margin: 1px 15px;
+            float: left;
+            position: absolute;
+        }
+        #sum{
+            width: 350px;
+            height: 200px;
+            margin-top: 70px;
+            padding: 20px;
+            position: fixed;
+            left:11%;
+            top: 270px;
+            background-color: lightsteelblue;
+        }
+        #sum_inner{
+            width:349px;
+            margin:0 auto;
+            position:absolute;
+            left:0;
+            bottom:21px;
+
+        }
+        #sum input{
+            width: 120px;
+            height: 30px;
+            margin-top:
+            position: fixed;
+            left:13%;
+            background-color: white;
+            border-radius: 15px;
+        }
+
+        #screen{
+            width: 350px;
+            height: 100px;
+            margin-top: 100px;
+            position: fixed;
+            left: 10%;
+            top:450px;
+        }
+
+
+        .search_form{
+            position: absolute;
+            top:47px;
+            left: 50px;
+            width:400px;
+            height:40px;
+        }
+
+
+        .input_text{
+            width:200px;
+            height: 40px;
+            border:1px solid lightsteelblue;
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            padding:0px;
+            text-indent: 10px;
+            outline: none;
+            float:left;
+        }
+
+        .input_sub{
+            width:100px;
+            height: 42px;
+            background: lightsteelblue;
+            border:0px;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            float:left;
+            color:white;
+            cursor:pointer;
+        }
+
+
+        #newaction{
+            width: 800px;
+            height: 150px;
+            margin-top: 100px;
+            background-color: white;
+            position: relative;
+            left: 50px;
+        }
+
+        .newaction_form{
+            position: absolute;
+            top:27px;
+            left: 50px;
+            width: 100%;
+            height:40px;
+        }
+
+
+        .newaction_text{
+            position: absolute;
+            left: -5px;
+            width: 710px;
+            height: 50px;
+            border: 0;
+            border-radius: 15px;
+            padding: 0px;
+            text-indent: 10px;
+            outline: none;
+            float: left;
+        }
+
+        .newaction_sub{
+            position: absolute;
+            right: 90px;
+            top: 60px;
+            width:90px;
+            height: 45px;
+            background: lightsteelblue;
+            border:0px;
+            border-radius: 15px;
+            color:white;
+            cursor:pointer;
+            font-size: medium;
+        }
+        #newaction svg{
+            width: 25px;
+            height: 25px;
+        }
+
+        #placeholder{
+            margin-top: 10px;
+            margin-bottom: 30px;
+            position: relative;
+            top: 10px;
+            left: 150px;
+            height: 5px;
+            width: 600px;
+            background-color: lightsteelblue;
+        }
+        .actions{
+            width: 800px;
+            height: 200px;
+            margin-top: 20px;
+            background-color: white;
+            position: relative;
+            left: 50px;
+        }
+        .actions svg{
+            width: 25px;
+            height: 25px;
+        }
+        .actions li{
+            margin: 1px 15px;
+            float: left;
+            position: absolute;
+        }
+        .actions .managebutton{
+            border-radius: 50%;
+            border: none;
+            display: inline-block;
+            width:30px;
+            height: 30px;
+            background-size: cover;
+            background-image: url("{% static 'image/delete.png' %}");
+            position: absolute;
+            float: right;
+            right: 20px;
+            top: 20px;
+
+        }
+        button{
+            border-radius: 50%;
+            border: none;
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background-size: cover;
+            background-image: url("{% static 'image/loginbutton.jpg' %}");
+            position: fixed;
+            float: right;
+            right: 50px;
+            bottom: 50px;
+            z-index: 9999;
+            color: #000000;
+        }
+        a{text-decoration:none;}
+        a-visit{text-decoration:none;}
+        #sum a:hover,a:active{
+          color:white;
+        }
+    </style>
+</head>
+<body>
+<!--导航栏-->
+<div id="nav">
+    <ul class="menu">
+        <li>
+            <a class="menuheader" href="{% url 'Mtest' %}">
+                首页·INDEX
+            </a>
+        </li>
+        <svg color="#394039" width="6em" height="6em" viewBox="0 0 16 16" class="tributton" fill="currentColor">
+            <path fill-rule="evenodd" d="M8 0a.5.5 0 0 1 .416.223l3 4.5A.5.5 0 0 1 11 5.5h-.098l2.022 3.235a.5.5 0 0 1-.424.765h-.191l1.638 3.276a.5.5 0 0 1-.447.724h-11a.5.5 0 0 1-.447-.724L3.69 9.5H3.5a.5.5 0 0 1-.424-.765L5.098 5.5H5a.5.5 0 0 1-.416-.777l3-4.5A.5.5 0 0 1 8 0z"/>
+            <path d="M7 13.5h2V16H7v-2.5z"/>
+        </svg>
+        <li>
+            <a class="menujoy" href="#joy">
+                乐趣·JOY
+            </a>
+        </li>
+
+        <svg color="#394039" width="6em" height="6em" viewBox="0 0 16 16" class="tributton" fill="currentColor">
+            <path fill-rule="evenodd" d="M8 0a.5.5 0 0 1 .416.223l3 4.5A.5.5 0 0 1 11 5.5h-.098l2.022 3.235a.5.5 0 0 1-.424.765h-.191l1.638 3.276a.5.5 0 0 1-.447.724h-11a.5.5 0 0 1-.447-.724L3.69 9.5H3.5a.5.5 0 0 1-.424-.765L5.098 5.5H5a.5.5 0 0 1-.416-.777l3-4.5A.5.5 0 0 1 8 0z"/>
+            <path d="M7 13.5h2V16H7v-2.5z"/>
+        </svg>
+        <li>
+            <a class="menustatus" href="{% url 'archive' %}">
+                文章·ARTICLES
+            </a>
+        </li>
+        <svg color="#394039" width="6em" height="6em" viewBox="0 0 16 16" class="tributton" fill="currentColor">
+            <path fill-rule="evenodd" d="M8 0a.5.5 0 0 1 .416.223l3 4.5A.5.5 0 0 1 11 5.5h-.098l2.022 3.235a.5.5 0 0 1-.424.765h-.191l1.638 3.276a.5.5 0 0 1-.447.724h-11a.5.5 0 0 1-.447-.724L3.69 9.5H3.5a.5.5 0 0 1-.424-.765L5.098 5.5H5a.5.5 0 0 1-.416-.777l3-4.5A.5.5 0 0 1 8 0z"/>
+            <path d="M7 13.5h2V16H7v-2.5z"/>
+        </svg>
+        <li>
+            <a class="menuabout" href="#about">
+                关于·ABOUT US
+            </a>
+        </li>
+    </ul>
+
+</div>
+
+<div class="left" style="float: left;width:35%;">
+    <!--个人信息栏（左上）-->
+    <div id="info">
+        <img src="{% static 'image/lky.jpg' %}">
+        <h3 style="width: 60%;">
+            {% if IsLogin %}
+                {{user.nickname}}
+            {% else %}
+                博主
+            {% endif%}
+            </h3>
+        <h4 style="width: 60%;"></h4>
+        <ul class="personaldata" >
+            <li style="left: 15px;bottom: 50px;">
+                <svg color="#394039" width="6em" height="6em" viewBox="0 0 16 16" class="tributton" fill="currentColor">
+                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                    <path fill-rule="evenodd" d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                </svg>
+                <span style="color:black">浏览：</span>
+                <strong data-number="80975">80,975</strong>
+            </li>
+            <li class="break rotate"></li>
+            <li style="left: 175px;bottom: 50px" onclick = "window.location.href={% url 'archive' %}">
+                <svg color="#394039" width="6em" height="6em" viewBox="0 0 16 16" class="tributton" fill="currentColor">
+                    <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+                    <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+                    <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm1.639-4.208l1.33.886 1.854-1.855a.25.25 0 0 1 .289-.047L11 4.75V7a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 7v-.5s1.54-1.274 1.639-1.208zM6.75 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5z"/>
+                </svg>
+                <span style="color:black" onclick = "window.location.href={% url 'archive' %}">文章：</span>
+                <strong data-number="20">{{ articlecount }}</strong>
+
+            </li>
+            <li class="break rotate"></li>
+            <li style="left: 15px;bottom: 15px;">
+                <svg color="#394039" width="6em" height="6em" viewBox="0 0 16 16" class="tributton" fill="currentColor">
+                    <path fill-rule="evenodd" d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                    <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+                <span style="color:black">动态：</span>
+                <strong data-number="35">{{ dynamiccount }}</strong>
+
+            </li>
+            <li class="break rotate"></li>
+            <li style="left: 175px;bottom: 15px;">
+                <svg color="#394039" width="6em" height="6em" viewBox="0 0 16 16" class="tributton" fill="currentColor">
+                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                </svg>
+                <span style="color:black">收藏：</span>
+                <strong data-number="6"> 6</strong>
+
+            </li>
+        </ul>
+    </div>
+
+    <!--归档栏（左中）-->
+    <div id="sum">
+
+            {% for article in articles%}
+                  <li style="float:left">
+                      <a href="/archive/note/{{ article.aid }}">·{{ article.title }}</a>
+                      <a href="{% url 'article_delete' article.aid %}" style="font-size:5px;">del</a>
+                  </li>
+            {% endfor %}
+        <div id="sum_inner">
+            {% if IsLogin %}
+                    <input id = "publisher" type="button" style="dispaly:block" value="发表文章" onclick = "window.location.href={% url 'publish' %}" />
+            {% endif %}
+            <input id = "archive" type="button" style="dispaly:block" value="查看文章" onclick = "window.location.href={% url 'archive' %}" />
+        </div>
+    </div>
+
+    <!--搜索/排序栏（左下）-->
+    <div id="screen">
+        <form class="search_form" method="post" action="{% url 'search' %}">
+            <input type="text" name="text" class="input_text" placeholder="请输入搜索内容">
+            <input type="submit" value="搜索" class="input_sub" >
+        </form>
+    </div>
+
+</div>
+<div class="right" style="float: right;width:65%;">
+
+    <!--发布动态栏（右上）-->
+    {% if IsLogin %}
+    <div id="newaction">
+        <form class="newaction_form" method="post" action="{% url 'publishingdt' %}">
+            <input type="text" name="content" class="newaction_text" placeholder="今天发生什么有趣的事情呢？">
+            <input type="submit" value="发布" class="newaction_sub">
+        </form>
+        <ul class="newaction_buttons" >
+                <li style="position: absolute;left: 40px;bottom: 20px;">
+                    <svg color="#394039" width="6em" height="6em" viewBox="0 0 16 16" class="tributton" fill="currentColor">
+                        <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path fill-rule="evenodd" d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM6.5 6.497V6.5h-1c0-.568.447-.947.862-1.154C6.807 5.123 7.387 5 8 5s1.193.123 1.638.346c.415.207.862.586.862 1.154h-1v-.003l-.003-.01a.213.213 0 0 0-.036-.053.86.86 0 0 0-.27-.194C8.91 6.1 8.49 6 8 6c-.491 0-.912.1-1.19.24a.86.86 0 0 0-.271.194.213.213 0 0 0-.036.054l-.003.01z"/>
+                        <path d="M2.31 5.243A1 1 0 0 1 3.28 4H6a1 1 0 0 1 1 1v1a2 2 0 0 1-2 2h-.438a2 2 0 0 1-1.94-1.515L2.31 5.243zM9 5a1 1 0 0 1 1-1h2.72a1 1 0 0 1 .97 1.243l-.311 1.242A2 2 0 0 1 11.439 8H11a2 2 0 0 1-2-2V5z"/>
+
+                    </svg>
+                </li>
+                <li style="position: absolute;left: 100px;bottom: 20px;">
+                    <svg color="#394039" width="6em" height="6em" viewBox="0 0 16 16" class="tributton" fill="currentColor">
+                        <path fill-rule="evenodd" d="M14.002 2h-12a1 1 0 0 0-1 1v9l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094L15.002 9.5V3a1 1 0 0 0-1-1zm-12-1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm4 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                    </svg>
+                </li>
+                <li class="break rotate"></li>
+                <li style="position: absolute;left: 160px;bottom: 20px;">
+                    <svg color="#394039" width="6em" height="6em" viewBox="0 0 16 16" class="tributton" fill="currentColor">
+                        <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2z"/>
+                        <path fill-rule="evenodd" d="M14 11V2h1v9h-1zM6 3v10H5V3h1z"/>
+                        <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"/>
+                    </svg>
+                </li>
+                <li class="break rotate"></li>
+                <li style="position: absolute;left: 220px;bottom: 20px;">
+                    <svg color="#394039" width="6em" height="6em" viewBox="0 0 16 16" class="tributton" fill="currentColor">
+                        <path fill-rule="evenodd" d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
+                    </svg>
+                </li>
+                <li class="break rotate"></li>
+
+            </ul>
+    </div>
+    {% endif %}
+<div id="placeholder"></div>
+    <!--动态栏（右下）-->
+    {% for dynamic in dynamics %}
+        <div class="actions">
+        <img src="{% static 'image/lky.jpg' %}">
+        <h3 style="position:absolute;left: 150px;">
+            {% if IsLogin %}
+                {{user.nickname}}
+            {% else %}
+                博主
+            {% endif%}</h3>
+
+        <h4 style="position:absolute;left: 150px;top:80px;width:600px;">{{ dynamic.content }}</h4>
+        <ul class="personaldata" >
+            <li style="left: 540px;bottom: 15px;">
+                <svg color="#394039" width="6em" height="6em" viewBox="0 0 16 16" class="tributton" fill="currentColor">
+                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                    <path fill-rule="evenodd" d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                </svg>
+                <strong data-number="6"> 6</strong>
+            </li>
+            <li style="left: 620px;bottom: 15px;">
+                <svg color="#394039" width="6em" height="6em" viewBox="0 0 16 16" class="tributton" fill="currentColor">
+                    <path fill-rule="evenodd" d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                    <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+                <strong data-number="35">35</strong>
+            </li>
+            <li class="break rotate"></li>
+            <li class="break rotate"></li>
+            <li style="left: 700px;bottom: 15px;">
+                <svg color="#394039" width="6em" height="6em" viewBox="0 0 16 16" class="tributton" fill="currentColor">
+                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                </svg>
+                <strong data-number="6"> 6</strong>
+            </li>
+            <li class="break rotate"></li>
+            <li style="left: 135px;bottom: 15px;">
+                <strong data-time="3">{{ dynamic.time }}</strong>
+            </li>
+
+        </ul>
+        <button class="managebutton" type="button" onclick="alert('helloha!')" ></button>
+
+
+    </div>
+    {% endfor %}
+
+
+    </div>
+
+</div>
+                {% if IsLogin %}
+                    <a  href = "{%  url 'logout' %}" ><button type="button" onclick="" value="注销"><br><br><br><br>&nbsp;   注销</button></a>
+                {% else %}
+                    <a  href = "{% url 'log' %}" ><button type="button" onclick="" value="登录"><br><br><br><br>&nbsp;   登录</button></a>
+                {% endif %}
+
+</body>
+{% if pwderror %}
+        <script>
+                alert('{{ pwderror }}');
+        </script>
+    {% endif %}
+    {% if IsLogin %}
+    <script>
+         var quiteTime = 15*60;
+         var currentTime = 0;
+        $(function () {
+
+            $("*").click(function () {
+                currentTime = 0;
+            });
+
+            $('*').mouseover(function () {
+                currentTime = 0;
+            });
+
+            setInterval(function () {
+                currentTime++;
+                if(currentTime>=quiteTime)
+                {
+                     top.location.href = '/blog/MyWorld';
+                }
+            }, 1000);
+        })
+    </script>
+{% endif %}
+</html>

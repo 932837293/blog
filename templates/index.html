@@ -1,0 +1,392 @@
+<!doctype html>
+{% load static %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>红凤凰火凤凰粉凤凰</title>
+	<link rel="stylesheet" type="text/css"  href="{% static 'css/idangerous.swiper.css' %}">
+	
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<style>
+	*{
+		margin:0;
+		padding:0px;
+	}
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  background: #222;
+  text-align: center;
+		 border-top: 0px outset white;
+ 	border-bottom: 1px outset white;
+}
+.swiper-slide {
+  height: 100%;
+  opacity: 0.4;
+  -webkit-transition: 300ms;
+  -moz-transition: 300ms;
+  -ms-transition: 300ms;
+  -o-transition: 300ms;
+  transition: 300ms;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+
+}
+.swiper-slide-visible {
+  opacity: 0.5;
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  -ms-transform: scale(0.8);
+  -o-transform: scale(0.8);
+  transform: scale(0.8);
+}
+.swiper-slide-active {
+  top: 0;
+
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+}
+.slide1 {
+  	-moz-background-size:100% 100%; 
+	background-size:100% 100%;
+	background-image:url(img/dnf.jpg);
+}
+.slide2 {
+ 	-moz-background-size:100% 100%; 
+	background-size:100% 100%;
+	background-image:url(static/image/battlegrounds.jpg);
+}
+.slide3 {
+  	-moz-background-size:100% 100%; 
+	background-size:100% 100%;
+	background-image:url(img/wzry.jpg);
+}
+.slide4 {
+  	-moz-background-size:100% 100%; 
+	background-size:100% 100%;
+	background-image:url(img/QQSpeed.jpg);
+}
+.slide5 {
+  	-moz-background-size:100% 100%; 
+	background-size:100% 100%;
+	background-image:url(img/swxf.jpg);
+}
+.slide6{
+	  	-moz-background-size:100% 100%; 
+	background-size:100% 100%;
+	background-image:url(img/lol.jpg);
+}
+.swiper-slide .title {
+  font-style: italic;
+  font-size: 42px;
+  margin-top: 80px;
+  margin-bottom: 0;
+  line-height: 45px;
+}
+.title
+{
+	-moz-background-size:100% 100%; 
+	background-size:100% 100%;
+	background-image:url(img/dnf.jpg);
+
+}
+.pagination {
+  position: absolute;
+  z-index: 20;
+  left: 0px;
+  width: 100%;
+  text-align: center;
+  bottom: 5px;
+}
+.swiper-pagination-switch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 8px;
+  background: #aaa;
+  margin-right: 8px;
+  cursor: pointer;
+  -webkit-transition: 300ms;
+  -moz-transition: 300ms;
+  -ms-transition: 300ms;
+  -o-transition: 300ms;
+  transition: 300ms;
+  opacity: 0;
+  position: relative;
+  top: -50px;
+}
+.swiper-visible-switch {
+  opacity: 1;
+  top: 0;
+  background: #aaa;
+}
+.swiper-active-switch {
+  background: #fff;
+}
+#logo{
+    border-top: 0px outset black;
+ 	border-bottom: 1px outset black;
+	/*opacity: 0.8;*/
+}
+
+#news{
+    height:150px;
+    width:100%;
+    display:block;
+}
+#news1
+	{
+		background-size:100% 100%;
+		background-image:url(img/warhammer.jpg);
+
+	}
+#news2
+	{
+		background-size:100% 100%;
+		background-image:url(img/mieshi.jpg);
+	}
+#news3
+	{
+		background-size:100% 100%;
+		background-image:url(img/assassins.jpg);
+	}
+#news4
+	{
+		background-size:100% 100%;
+		background-image:url(img/finallyfantasy15.jpg);
+	}
+#news5
+	{
+		background-size:100% 100%;
+		background-image:url(img/callofduty.jpg);
+	}
+#news6
+	{
+		background-size:100% 100%;
+		background-image:url(img/pathofexile.jpg);
+	}
+#news7
+	{
+		background-size:100% 100%;
+		background-image:url(img/paj.jpg);
+	}
+#news8
+	{
+		background-size:100% 100%;
+		background-image:url(img/ark.jpg);
+	}
+	a{
+		text-decoration:none;
+	}
+.boxon{
+	margin-top:50px;
+	margin-left:50px;
+	margin-right:75px;
+	border: 2px outset white;
+	height:200px;
+	width:250px;
+	background-color: aqua;
+	float:left;
+	} 	
+.boxdown{
+	margin-top:40px;
+	margin-left:50px;
+	margin-right:75px;
+	border: 2px outset white;
+	height:200px;
+	width:250px;
+	background-color: aqua;
+	float:left;
+	}
+
+#inner{
+		margin-top: 175px;
+	    opacity: 0.5;
+	  	width: 100%;
+		height:25px;
+	    background-color:azure;
+	    text-align: center; 
+	}
+#more{
+	background-color:white;
+	float:right;
+	height:20px;
+	width:60px;
+	margin-top:15px;
+	margin-right:50px;
+	border-radius: 10px;
+	}
+#portfolio
+	{
+		background-color:#222;
+		border-top: 0px ridge black;
+	}
+#contactframe{
+		float:left;
+	    height:600px;
+	    width:100%;
+    	background-image: url(img/gbimg3.jpg);
+	    background-repeat:round;
+	}	
+	
+	
+#contact{
+			 border: 1px outset black;
+		margin:150px auto 0 auto;
+	}
+#dashangbutton{
+	margin-top:15px;
+		width:150px;
+	 	height:40px;
+		background-image: url(img/dashangbgimg.png);
+	background-size: 100% 100%;
+	    border-radius: 5px;
+	}
+</style>	
+</head>
+
+<body>
+<div id="home" style="width:100%;background-color:white;">
+  <img id="homebg" src="/static/image/timg.jpg" style="width:100%;" onclick="demo()">
+</div>
+<div id="logo" style="width:100%;height:100px;background-color:white;">
+  <img src="/static/image/logo.png" style="width:250px;height:100px;float:left;" >
+    <div id="navigation" style="width:800px;height:100px;float:left;">
+        <br>	<ul class="nav" style="margin:20px">
+            <li style="float:right;display:inline;"><a class="smoothScroll" href="#contact" style="color:black;margin:20px">CONTACT</a></li>
+            <li style="float:right;display:inline;"><a class="smoothScroll" href="#portfolio" style="color:black;margin:20px">CANVAS</a></li>
+            <li style="float:right;display:inline;"><a class="smoothScroll" href="#news" style="color:black;margin:20px">NEWS</a></li>
+            <li style="float:right;display:inline;"><a class="smoothScroll" href="#homebg" style="color:black;margin:20px">HOME</a></li>
+        </ul>
+    </div>
+    <div id="loading" style="width:400px;height:100px;float:right;margin-right:10%;">
+        <br><ul class="sign" style="margin:20px">
+            <li style="float:right;display:inline;"><a href="https://htmlpreview.github.io/?https://github.com/932837293/jd/blob/master/登录页面.html" style="color:black;margin:20px">SIGN IN</a></li>
+        </ul>
+    </div>
+</div>
+<div id="news">
+    <h1 style="color:white;text-align: center"><br><br><br>NEWS</h1>
+	<a href="http://www.gamersky.com/news/201704/886842.shtml" target="_blank"><div id="news1" class="boxon"><div id="inner"><p style="color:black">Warhammer</p></div></div></a>
+	<a href="http://www.gamersky.com/news/201803/1024629.shtml" target="_blank"><div id="news2" class="boxon"><div id="inner"><p style="color:black">Exterminate the world</p></div></div></a>
+	<a href="http://www.gamersky.com/z/acorigins/" target="_blank"><div id="news3" class="boxon"><div id="inner"><p style="color:black">Assasins.Origins</p></div></div></a>
+	<a href="http://www.gamersky.com/z/ff15/" target="_blank"><div id="news4" class="boxon"><div id="inner"><p style="color:black">Finally Fantasy.XV</p></div></div></a>
+	<a href="http://codol.gamersky.com/" target="_blank"><div id="news5" class="boxdown"><div id="inner"><p style="color:black">Call of Duty</p></div></div></a>
+	<a href="http://ol.gamersky.com/z/poe/" target="_blank"><div id="news6" class="boxdown"><div id="inner"><p style="color:black">Path of Exile</p></div></div></a>
+	<a href="http://shouyou.gamersky.com/z/paj/" target="_blank"><div id="news7" class="boxdown"><div id="inner"><p style="color:black">决战平安京</p></div></div></a>
+	<a href="http://www.gamersky.com/z/ark/" target="_blank"><div id="news8" class="boxdown"><div id="inner"><p style="color:black">ARK:Survive Evolved</p></div></div></a>
+	<div id="more" onmouseover="moretag()"><a href="http://www.gamersky.com/" target="_blank">..more</a></div>
+</div>
+<div id="portfolio" style="width:100%;height:500px;float:left;text-align: center;">
+	<h1 style="color:white">CANVAS<h5 style="color:white;text-align: center">鼠标可拖拽黑布滑动</h5></h1>
+	<div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide slide1">
+          <div class="title"></div>
+        </div>
+        <div class="swiper-slide slide2">
+          <div class="title"></div>
+        </div>
+        <div class="swiper-slide slide3">
+          <div class="title"></div>
+        </div>
+        <div class="swiper-slide slide4">
+          <div class="title"></div>
+        </div>
+        <div class="swiper-slide slide5">
+          <div class="title"></div>
+        </div>
+        <div class="swiper-slide slide6">
+          <div class="title"></div>
+        </div>
+      </div>
+    </div>
+<div id="contactframe">  
+    <div id="contact" style="width:30%;height:350px;background-color:white;"><br><br><br>
+	<h1 style="color:black;text-align: center">CONTACT US</h1>
+	<div id="one" style="width:100%;hight:100px;margin-top: 15px"><p style="width:200px;float:left;color:cadetblue">Name:</p><input type="text" style="float:left;width:160px;"></div><br>
+	<div id="two" style="width:100%;hight:100px;margin-top: 15px"><p style="width:200px;float:left;color:cadetblue">Wechat:</p><input type="text" style="width:160px;float:left;"></div>
+	<br>
+	<div id="three" style="width:100%;hight:100px;margin-top: 15px"><p style="width:200px;float:left;color:cadetblue">Tel:</p><input id="submittel" type="text" style="width:160px;float:left;"></div><br>
+	<div id="four" style="width:100%;hight:100px;margin-top: 15px"><p style="width:200px;float:left;color:cadetblue">What's wrong:</p><input type="text" style="width:160px;float:left;"></div>
+	<br><div id="five" style="width:100%;hight:100px;margin-top: 15px"><button id="submitbut" type="submit" onclick="submit()">提交</button></div>
+    </div>
+    <div id="dashang"><a href="erweima.html"><button id="dashangbutton" type="button"></button></a></div>
+ </div>
+    
+ <div id="footer" style="width:100%;height:30px;background-color:black;float:left;color:white;">
+ 	<p style="text-align: center;font-size:5px">
+ 		Copyright © 2018-2018 wowhaha. All Rights Reserved.
+        <br>红凤凰火凤凰粉凤凰 版权所有
+ 	</p>
+ </div>
+  <script src="js/idangerous.swiper.min.js"></script>
+  <script language="javascript">
+   $(function(){
+        var s = window.innerHeight;
+        window.onscroll=function(){
+            $("#logo").show();
+            var scrolltop=document.documentElement.scrollTop||doucument.body.scrollTop;
+            if(scrolltop >= s)
+                        $("#logo").css("position","absolute").css("top",scrolltop);
+            else 
+                        $("#logo").css("position","absolute").css("top",s);
+        }
+    })
+
+    $(function(){
+        var s = window.innerHeight;
+        window.onload=function(){
+            var s = window.innerHeight;
+            var logo_h =  $("#logo").outerHeight();
+            $("#home").css("height",s);
+            $("#homebg").css("height",s);
+            $("#news").css("height",s-logo_h);
+            $("#logo").hide();
+            $("#news").hide();
+
+        }
+    })
+  </script>
+  <script>
+  var mySwiper = new Swiper('.swiper-container',{
+    pagination: '.pagination',
+    paginationClickable: true,
+    centeredSlides: true,
+    slidesPerView: 3,
+    watchActiveIndex: true
+  })
+
+  function demo(){
+  	    document.getElementById("homebg").src="/static/image/contactbgimg.png";
+        console.log(document.getElementById("homebg").style.height);
+  }
+
+  function submit(){
+	  var value = document.getElementById("submittel").value;
+	 if (value == '' || value == undefined || value == null)
+	   		{
+		  alert("Please enter you Tel!");
+			location.reload();	
+	   		}
+	  else {
+		  alert("We will take sometimes to contact with you!")
+		  location.reload();	
+	  } 
+  }
+  
+    window.onload=function(){
+
+    }
+  
+  </script>
+</body>
+</html>
